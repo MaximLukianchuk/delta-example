@@ -1,0 +1,28 @@
+.header {
+    position: sticky;
+    top: 0;
+    height: 65px;
+    background-color: aquamarine;
+    z-index: 10;
+}
+
+.header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.header-content .content-logo {
+    height: 40px;
+}
+
+.content-menu .menu-items {
+
+}
+
+.menu-items .menu-item {
+    display: inline-block;
+    margin: 0 15px;
+
+}

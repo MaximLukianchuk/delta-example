@@ -1,0 +1,10 @@
+*~
+
+npm-debug.log
+npm-debug.log*
+*.log
+.idea
+
+node_modules
+
+build

@@ -1,0 +1,28 @@
+{
+  "name": "web_lab4",
+  "version": "1.0.0",
+  "description": "SPA",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.js",
+    "build": "rimraf ./build && NODE_ENV=production webpack -p --config webpack.config.js"
+  },
+  "keywords": [
+    "javascript",
+    "spa"
+  ],
+  "author": "Maxim Lukianchuk",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^3.4.2",
+    "favicons-webpack-plugin": "^3.0.1",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.0.4",
+    "rimraf": "^3.0.2",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {}
+}
