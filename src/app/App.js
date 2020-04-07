@@ -6,9 +6,9 @@ import './reset.css'
 import './palette.css'
 import './App.css'
 
-export const App = props => {
+export const App = ({ path, ...props }) => {
   
-  switch (props.path) {
+  switch (path) {
     case '':
       return `
         ${Main(props)}
