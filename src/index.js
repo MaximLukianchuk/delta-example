@@ -1,4 +1,4 @@
 import { bootstrap } from 'delta'
-import { appModule } from './app/AppModule';
+import App from './App'
 
-bootstrap(appModule)
+bootstrap(App, '#root', { counter: 3 })
