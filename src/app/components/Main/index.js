@@ -1,3 +1,1 @@
-export default () => `
-  <h1>Main page!</h1>
-`
+export { default } from './Main'

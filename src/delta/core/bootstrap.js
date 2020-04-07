@@ -1,38 +1,49 @@
-const render = (rootComponent, selector, state, setState) => {
-  let node = document.querySelector(selector)
+const willUnmountCallbacks = []
 
-  if (!node) {
-    throw new Error(`No nodes were found for ${selector} selector!`)
-  }
+const render = (rootComponent, node) => {
+  const path = window.location.hash.slice(1)
 
-  let path = window.location.hash.slice(1)
+  const didMountCallbacks = []
 
-  let onMountCallbacks = []
-
-  let props = {
+  const props = {
     path,
-    state,
-    setState,
-    onMount: (callback) => {
-      onMountCallbacks.push(callback)
+    useEffect: callback => {
+      didMountCallbacks.push(callback)
+    },
+    useTheme: () => {
+      return () => {
+        const isThemed = localStorage.getItem('themed')
+        node.classList.toggle('themed')
+        localStorage.setItem('themed', isThemed === 'true' ? 'false' : 'true')
+      }
     }
   }
 
   node.innerHTML = rootComponent(props)
 
-  for (let callback of onMountCallbacks) {
-    callback()
+  while (willUnmountCallbacks.length) {
+    const cb = willUnmountCallbacks.shift()
+    typeof cb === 'function' && cb()
+  }
+
+  for (let callback of didMountCallbacks) {
+    let cb = callback()
+    cb && willUnmountCallbacks.push(cb)
   }
 }
 
-export default (rootComponent, selector, initialState = {}) => {
-  let state = initialState
-
-  const setState = (newState) => {
-    state = { ...state, ...newState }
-    render(rootComponent, selector, state, setState)
+export const bootstrap = (rootComponent, selector) => {
+  const node = document.querySelector(selector)
+  const isThemed = localStorage.getItem('themed')
+  
+  if (!node) {
+    throw new Error(`No nodes were found for ${selector} selector!`)
   }
-
-  window.addEventListener('hashchange', () => render(rootComponent, selector, state, setState))
-  render(rootComponent, selector, state, setState)
+  
+  if (isThemed === 'true') {
+    node.classList.add('themed')
+  }
+  
+  window.addEventListener('hashchange', () => render(rootComponent, node))
+  render(rootComponent, node)
 }

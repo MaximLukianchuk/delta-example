@@ -1,0 +1,17 @@
+.image.image-small {
+    height: 50px;
+    width: auto;
+    min-height: 50px;
+}
+
+.image.image-medium {
+    height: 300px;
+    width: auto;
+    min-height: 300px;
+}
+
+.image.image-big {
+    height: 450px;
+    width: auto;
+    min-height: 450px;
+}

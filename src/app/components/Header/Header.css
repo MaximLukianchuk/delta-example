@@ -2,27 +2,59 @@
     position: sticky;
     top: 0;
     height: 65px;
-    background-color: aquamarine;
+    background-color: var(--blue);
     z-index: 10;
+}
+
+.themed .header {
+    background-color: var(--main);
 }
 
 .header .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0 auto;
+    max-width: 75%;
     height: 100%;
 }
 
 .header-content .content-logo {
-    height: 40px;
-}
-
-.content-menu .menu-items {
-
+    cursor: pointer;
+    height: 50px;
 }
 
 .menu-items .menu-item {
     display: inline-block;
     margin: 0 15px;
+}
 
+.menu-items .menu-item a {
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.menu-items .menu-item a::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 5px;
+    background-color: var(--main);
+    top: 20px;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.themed .menu-items .menu-item a::after {
+    background-color: var(--blue);
+}
+
+.menu-items .menu-item a:hover::after {
+    width: 100%;
+    border-radius: 20px;
+    transition-duration: 0.3s;
 }

@@ -1,0 +1,23 @@
+.card {
+    padding: 30px;
+}
+
+.card .card-content {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 5px;
+}
+
+.card .card-item .card-property {
+    display: block;
+    color: var(--light-grey);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card .card-item .card-value {
+    display: block;
+    color: var(--dark-grey);
+    font-size: 11px;
+}
