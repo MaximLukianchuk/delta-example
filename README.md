@@ -16,3 +16,7 @@ npm run dev
 ```
 npm run build
 ```
+
+### Благодарность
+* [Pokepalettes](http://pokepalettes.com/#charizard)
+* [Pokeapi](https://pokeapi.co/)
