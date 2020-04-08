@@ -8,7 +8,6 @@ import './ResumeCard.css'
 const ResumeCard = ({
   className,
   file,
-  getItems,
   items,
   images: [img1, img2],
   name,
@@ -30,7 +29,6 @@ const ResumeCard = ({
               className: 'developer-card',
               ...props,
               ...name,
-              getItems,
               items
             })}
             <div class='card-download-button'>

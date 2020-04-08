@@ -1,5 +1,4 @@
 import Main from './components/Main'
-import Charizard from './components/Charizard'
 import Pokemon from './components/Pokemon'
 import NotFound from './components/NotFound'
 
@@ -13,11 +12,6 @@ export const App = ({ location: { path, id }, ...props }) => {
     case '':
       return `
         ${Main(props)}
-      `
-
-    case 'charizard':
-      return `
-        ${Charizard(props)}
       `
   
     case 'pokemon':
