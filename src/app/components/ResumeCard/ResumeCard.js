@@ -5,18 +5,26 @@ import Card from '../Card'
 
 import './ResumeCard.css'
 
-const ResumeCard = ({ className, file, getItems, items, images: [img1, img2], name, downloadText, ...props }) => {
-  
+const ResumeCard = ({
+  className,
+  file,
+  getItems,
+  items,
+  images: [img1, img2],
+  name,
+  downloadText,
+  ...props
+}) => {
   return `
     <div class='${cn(className, 'resume-card')}'>
-        ${Image({
+        ${img1 ? Image({
           ...props,
           ...img1
-        })}
-        ${Image({
+        }) : ''}
+        ${img2 ? Image({
           ...props,
           ...img2
-        })}
+        }) : ''}
         <div class='card-content-wrapper'>
             ${Card({
               className: 'developer-card',

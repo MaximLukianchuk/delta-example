@@ -1,4 +1,5 @@
 import Main from './components/Main'
+import Charizard from './components/Charizard'
 import Pokemon from './components/Pokemon'
 import NotFound from './components/NotFound'
 
@@ -6,7 +7,7 @@ import './reset.css'
 import './palette.css'
 import './App.css'
 
-export const App = ({ path, ...props }) => {
+export const App = ({ location: { path, id }, ...props }) => {
   
   switch (path) {
     case '':
@@ -14,9 +15,14 @@ export const App = ({ path, ...props }) => {
         ${Main(props)}
       `
 
+    case 'charizard':
+      return `
+        ${Charizard(props)}
+      `
+  
     case 'pokemon':
       return `
-        ${Pokemon(props)}
+        ${Pokemon({ ...props, id })}
       `
 
     default:

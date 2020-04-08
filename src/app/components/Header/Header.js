@@ -22,7 +22,7 @@ const Header = ({ useTheme, useEffect }) => {
             <nav class='content-menu'>
                 <ul class='menu-items'>
                     <li class='menu-item'><a href='#'>Главная</a></li>
-                    <li class='menu-item'><a href='#pokemon'>Покемон</a></li>
+                    <li class='menu-item'><a href='#charizard'>Чаризард</a></li>
                 </ul>
             </nav>
         </div>
