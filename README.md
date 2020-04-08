@@ -2,7 +2,7 @@
 
 delta - open source библиотека для быстрого написания простых SPA приложений
 
-![Пример кода]()
+![Пример кода](https://github.com/MaximLukianchuk/delta-example/blob/master/screen.png)
 
 ### Быстрый старт
 ```
