@@ -18,13 +18,13 @@ const render = (rootComponent, node) => {
       }
     }
   }
-
-  node.innerHTML = rootComponent(props)
-
+  
   while (willUnmountCallbacks.length) {
     const cb = willUnmountCallbacks.shift()
     typeof cb === 'function' && cb()
   }
+
+  node.innerHTML = rootComponent(props)
 
   for (let callback of didMountCallbacks) {
     let cb = callback()
