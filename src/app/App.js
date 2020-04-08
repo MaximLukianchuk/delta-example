@@ -6,17 +6,17 @@ import './reset.css'
 import './palette.css'
 import './App.css'
 
-export const App = ({ path, ...props }) => {
+export const App = ({ location: { path, id }, ...props }) => {
   
   switch (path) {
     case '':
       return `
         ${Main(props)}
       `
-
+  
     case 'pokemon':
       return `
-        ${Pokemon(props)}
+        ${Pokemon({ ...props, id })}
       `
 
     default:

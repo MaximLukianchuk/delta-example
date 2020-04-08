@@ -1,12 +1,12 @@
 const willUnmountCallbacks = []
 
 const render = (rootComponent, node) => {
-  const path = window.location.hash.slice(1)
+  const [path, id] = window.location.hash.slice(1).split('/')
 
   const didMountCallbacks = []
 
   const props = {
-    path,
+    location: { path, id },
     useEffect: callback => {
       didMountCallbacks.push(callback)
     },

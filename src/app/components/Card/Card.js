@@ -1,4 +1,4 @@
-import { cn, map, ref, get } from 'delta'
+import { cn, map } from 'delta'
 
 import Hr from '../Hr'
 
@@ -11,33 +11,17 @@ const CardSection = ({ property, value }) => `
     </div>
 `
 
-const Card = ({ useEffect, className, title, subTitle, getItems, items, ...props }) => {
-  const cardContentRef = ref()
-  
-  useEffect(async () => {
-    if (!getItems) return
-    
-    const { abilities } = await getItems
-    for (const { ability: { url } } of abilities) {
-      await get(url)
-        .then(({ name, effect_entries: [{short_effect}] }) => {
-          cardContentRef().insertAdjacentHTML('beforeend', CardSection({ property: name, value: short_effect }))
-        })
-    }
-  })
-  
-  return `
+const Card = ({ useEffect, className, title, subTitle, items, ...props }) => `
     <div class='${cn(className, 'card')}'>
         <div class='card-header'>
             <h1 class='card-title'>${title}</h1>
             <h3 class='card-subtitle'>${subTitle}</h3>
         </div>
         ${Hr(props)}
-        <div id='${cardContentRef()}' class='card-content'>
-            ${items ? map(items, el => CardSection(el)) : ''}
+        <div class='card-content'>
+            ${map(items, el => CardSection(el))}
         </div>
     </div>
 `
-}
 
 export default Card

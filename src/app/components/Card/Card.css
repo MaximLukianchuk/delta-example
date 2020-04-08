@@ -4,6 +4,9 @@
 
 .card .card-content {
     display: grid;
+    overflow: scroll;
+    min-height: 67px;
+    max-height: 67px;
     grid-template-columns: repeat(3, auto);
     grid-gap: 5px;
 }

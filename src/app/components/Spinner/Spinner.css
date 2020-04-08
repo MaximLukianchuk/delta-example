@@ -1,0 +1,67 @@
+.spinner.spinner-pokeball {
+    border: 10px solid var(--poke-black);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(
+        150deg,
+        var(--poke-red) 0%,
+        var(--poke-red) 44%,
+        var(--poke-black) 44%,
+        var(--poke-black) 56%,
+        var(--white) 56%,
+        var(--white) 100%
+    );
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-name: shake;
+}
+
+.spinner.spinner-pokeball::before,
+.spinner.spinner-pokeball::after {
+    content: '';
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+}
+
+.spinner.spinner-pokeball::before {
+    background-color: var(--poke-black);
+    width: 80px;
+    height: 80px;
+    left: calc(50% - 40px);
+    top: calc(50% - 40px);
+}
+
+.spinner.spinner-pokeball::after {
+    width: 66px;
+    height: 66px;
+    left: calc(50% - 33px);
+    top: calc(50% - 33px);
+    background-color: var(--white);
+    border: double 10px var(--poke-black);
+}
+
+@keyframes shake {
+    from {
+        transform: none;
+    }
+    20% {
+        transform: translate3d(-20%, 0, 0) rotate3d(0, 0, 1, -10deg);
+    }
+    40% {
+        transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 5deg);
+    }
+    50% {
+        transform: translate3d(-10%, 0, 0) rotate3d(0, 0, 1, -10deg);
+    }
+    60% {
+        transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 5deg);
+    }
+    to {
+        transform: none;
+    }
+}

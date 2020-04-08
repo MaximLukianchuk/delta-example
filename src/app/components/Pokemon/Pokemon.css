@@ -1,7 +1,26 @@
-.poke-resume.resume-card {
-    margin-top: 50px;
-}
-
 .poke-resume.resume-card .card .card-content {
     grid-template-columns: max-content;
+}
+
+.poke-resume.resume-card {
+    margin: auto;
+}
+
+.poke-slide-left, .poke-slide-right {
+    position: fixed;
+    bottom: 250px;
+    border-color: var(--blue);
+    cursor: pointer;
+}
+
+.themed .poke-slide-left, .themed .poke-slide-right {
+    border-color: var(--main);
+}
+
+.poke-slide-left {
+    left: 250px;
+}
+
+.poke-slide-right {
+    right: 250px;
 }
