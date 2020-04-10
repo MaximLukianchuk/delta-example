@@ -4,6 +4,8 @@ import { ref } from './core/ref'
 import { cn } from './core/cn'
 import { map } from './core/map'
 import { navigate } from './core/navigate'
+import { strToHTML } from './core/strToHTML'
+import { compose } from './core/compose'
 
 export {
   ref,
@@ -11,5 +13,7 @@ export {
   get,
   cn,
   map,
-  navigate
+  navigate,
+  strToHTML,
+  compose
 }

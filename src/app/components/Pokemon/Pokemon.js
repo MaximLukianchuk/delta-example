@@ -1,18 +1,18 @@
-import { get, navigate, ref } from 'delta'
+import { get, navigate, ref, compose } from 'delta'
 
 import ResumeCard from '../ResumeCard'
 import Arrow from '../Arrow'
 import withAsync from '../../hocs/withAsync'
 import withHeader from '../../hocs/withHeader'
-import charizardResume from '../../static/charizardResume.pdf'
 
 import './Pokemon.css'
+import withLocalStorage from "../../hocs/withLocalStorage";
 
 const ResumeCardAsync = withAsync(ResumeCard)
 
-const Pokemon = ({ id, useEffect, ...props }) => {
+const Pokemon = ({ id, useEffect, ls, ...props }) => {
   
-  if (!id) {
+  if (!id || /[^0-9]/.test(id)) {
     navigate('pokemon/1')
     return ''
   }
@@ -20,23 +20,37 @@ const Pokemon = ({ id, useEffect, ...props }) => {
   const leftArrowForwardedRef = ref()
   const rightArrowForwardedRef = ref()
   
-  const swipeLeft = () => {
-    const prev = id >= 0 ? parseInt(id) - 1 : 801
+  const clickLeft = () => {
+    const prev = id > 1 ? parseInt(id) - 1 : 801
     navigate(`pokemon/${prev}`)
   }
   
-  const swipeRight = () => {
+  const clickRight = () => {
     const next = id < 801 ? parseInt(id) + 1 : 1
     navigate(`pokemon/${next}`)
   }
   
+  const pressArrow = ({ which, keyCode }) => {
+    const code = which || keyCode
+    
+    if (code === 37) {
+      clickLeft()
+    }
+    
+    if (code === 39) {
+      clickRight()
+    }
+  }
+  
   useEffect(() => {
-    leftArrowForwardedRef().addEventListener('click', swipeLeft)
-    rightArrowForwardedRef().addEventListener('click', swipeRight)
+    leftArrowForwardedRef().addEventListener('click', clickLeft)
+    rightArrowForwardedRef().addEventListener('click', clickRight)
+    document.addEventListener('keydown', pressArrow)
     
     return () => {
-      leftArrowForwardedRef().removeEventListener('click', swipeLeft)
-      rightArrowForwardedRef().removeEventListener('click', swipeRight)
+      leftArrowForwardedRef().removeEventListener('click', clickLeft)
+      rightArrowForwardedRef().removeEventListener('click', clickRight)
+      document.removeEventListener('keydown', pressArrow)
     }
   })
   
@@ -54,7 +68,7 @@ const Pokemon = ({ id, useEffect, ...props }) => {
       ],
       items: [],
       downloadText: 'Download CV',
-      file: charizardResume
+      id
     }
   
     for (const { ability: { url } } of abilities) {
@@ -73,6 +87,7 @@ const Pokemon = ({ id, useEffect, ...props }) => {
       className: 'poke-resume',
       asyncProps,
       patch,
+      spinnerType: 'pokeball',
       useEffect
     })}
     ${Arrow({
@@ -90,4 +105,7 @@ const Pokemon = ({ id, useEffect, ...props }) => {
 `
 }
 
-export default withHeader(Pokemon)
+export default compose(
+  withHeader,
+  withLocalStorage
+)(Pokemon)
