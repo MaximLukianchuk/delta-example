@@ -2,6 +2,7 @@ import { cn } from 'delta'
 
 import Image from '../Image'
 import Card from '../Card'
+import Star from '../Star'
 
 import './ResumeCard.css'
 
@@ -12,6 +13,7 @@ const ResumeCard = ({
   images: [img1, img2],
   name,
   downloadText,
+  id,
   ...props
 }) => {
   return `
@@ -31,12 +33,16 @@ const ResumeCard = ({
               ...name,
               items
             })}
-            <div class='card-download-button'>
+            ${file ? `<div class='card-download-button'>
                 <a class='card-download-link' href=${file} download='resume'>
                     <span class='download-text'>${downloadText}</span>
                 </a>
-            </div>
+            </div>` : ''}
         </div>
+        ${id ? Star({
+          className: 'resume-star',
+          selected: true
+        }) : ''}
     </div>
 `
 }

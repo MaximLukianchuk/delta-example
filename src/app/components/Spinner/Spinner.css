@@ -8,10 +8,10 @@
     background: linear-gradient(
         150deg,
         var(--poke-red) 0%,
-        var(--poke-red) 44%,
-        var(--poke-black) 44%,
-        var(--poke-black) 56%,
-        var(--white) 56%,
+        var(--poke-red) 48%,
+        var(--poke-black) 48%,
+        var(--poke-black) 52%,
+        var(--white) 52%,
         var(--white) 100%
     );
     animation-duration: 1s;
@@ -63,5 +63,34 @@
     }
     to {
         transform: none;
+    }
+}
+
+
+
+.spinner.spinner-dual-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.spinner.spinner-dual-ring::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 6px solid;
+    border-color: var(--main) transparent var(--main) transparent;
+    animation: rotate 1.2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }

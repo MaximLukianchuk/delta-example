@@ -1,9 +1,11 @@
 import { ref } from 'delta'
 
+import SmartSearch from '../SmartSearch'
+
 import logo from './logo.svg'
 import './Header.css'
 
-const Header = ({ useTheme, useEffect }) => {
+const Header = ({ useTheme, useEffect, ...props }) => {
   const logoRef = ref()
   const toggleTheme = useTheme()
   
@@ -19,6 +21,7 @@ const Header = ({ useTheme, useEffect }) => {
     <header class='header'>
         <div class='header-content'>
             <img id=${logoRef()} class='content-logo' src=${logo} alt='логотип'>
+            ${SmartSearch({ ...props, useEffect })}
             <nav class='content-menu'>
                 <ul class='menu-items'>
                     <li class='menu-item'><a href='#'>Главная</a></li>

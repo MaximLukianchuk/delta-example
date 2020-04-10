@@ -1,5 +1,11 @@
 .poke-resume.resume-card .card .card-content {
-    grid-template-columns: max-content;
+    display: block;
+    min-height: 122px;
+    max-height: 122px;
+}
+
+.poke-resume.resume-card .card .card-content .card-item {
+    padding-bottom: 8px;
 }
 
 .poke-resume.resume-card {

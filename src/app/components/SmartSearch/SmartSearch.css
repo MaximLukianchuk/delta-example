@@ -1,0 +1,104 @@
+/*.search {*/
+/*    position: relative;*/
+/*    flex-grow: 1;*/
+/*    margin-left: 150px;*/
+/*}*/
+
+/*.search .search-results {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    background-color: var(--white);*/
+/*    border: 1px solid var(--light-grey);*/
+/*    border-radius: 4px;*/
+/*    left: -25px;*/
+/*    top: 108%;*/
+/*    width: 200px;*/
+/*    min-height: 72px;*/
+/*    max-height: 144px;*/
+/*    overflow: scroll;*/
+/*}*/
+
+/*.search .search-results.hidden {*/
+/*    display: none;*/
+/*}*/
+
+/*.search .search-input {*/
+/*    border: none;*/
+/*    border-radius: 4px;*/
+/*    background: var(--white) !important;*/
+/*    outline: none;*/
+/*    font-size: 15px;*/
+/*    width: 145px;*/
+/*    height: 24px;*/
+/*    color: var(--dark-grey)*/
+/*}*/
+
+/*.search .search-results .spinner {*/
+/*    margin: 15px 0 0 65px;*/
+/*}*/
+
+/*.search .search-results .result-section {*/
+/*    position: relative;*/
+/*    padding-left: 8px;*/
+/*    border: 1px solid var(--light-grey);*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.search .search-results .result-section:hover {*/
+/*    background-color: var(--poke-grey);*/
+/*}*/
+
+/*.search .search-results .result-link {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    z-index: 999999;*/
+/*}*/
+
+
+
+
+.search {
+    position: relative;
+    flex-grow: 1;
+    margin-left: 150px;
+}
+
+.search .search-input.input {
+    color: var(--dark-grey);
+    font-size: 15px;
+    padding-left: 6px;
+}
+
+.search .search-input.input:disabled {
+    background-color: var(--light-grey) !important;
+}
+
+.search .search-list {
+    display: block;
+    position: absolute;
+    background-color: var(--white);
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+    left: -25px;
+    top: 108%;
+    width: 200px;
+    min-height: 24px;
+    max-height: 144px;
+    overflow: scroll;
+}
+
+.search .search-list.hidden {
+    display: none;
+}
+
+.search .search-list .list-item {
+    padding-left: 10px;
+}
+
+.search .search-list .list-item:hover {
+    cursor: pointer;
+    background-color: var(--beige);
+}
