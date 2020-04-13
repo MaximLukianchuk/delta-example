@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "name": "web_lab4",
+  "description": "SPA",
+  "icons": {
+    "60": "/static/firefox_app_60x60.png",
+    "128": "/static/firefox_app_128x128.png",
+    "512": "/static/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": "Maxim Lukianchuk",
+    "url": null
+  }
+}
