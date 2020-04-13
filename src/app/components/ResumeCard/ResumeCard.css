@@ -24,7 +24,7 @@
 }
 
 .developer-card.card {
-    min-width: 440px;
+    width: 440px;
 }
 
 .developer-card.card .card-title {
@@ -73,4 +73,9 @@
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
+}
+
+.resume-card .resume-star:hover {
+    transform: scale(1.1);
 }

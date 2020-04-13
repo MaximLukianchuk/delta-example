@@ -1,0 +1,22 @@
+.favourite-pokemons .pokemon-list .poke-resume.resume-card {
+    margin: 50px auto;
+}
+
+.favourite-pokemons .title {
+    text-align: center;
+    color: var(--dark-grey)
+}
+
+.favourite-pokemons .poke-resume.resume-card .card .card-content {
+    display: block;
+    min-height: 122px;
+    max-height: 122px;
+}
+
+.favourite-pokemons .poke-resume.resume-card .card .card-content .card-item {
+    padding-bottom: 8px;
+}
+
+.favourite-pokemons .poke-resume.resume-card {
+    margin: auto;
+}

@@ -1,5 +1,6 @@
 import Main from './components/Main'
 import Pokemon from './components/Pokemon'
+import FavouritePokemons from './components/FavouritePokemons'
 import NotFound from './components/NotFound'
 
 import './reset.css'
@@ -17,6 +18,11 @@ export const App = ({ location: { path, id }, ...props }) => {
     case 'pokemon':
       return `
         ${Pokemon({ ...props, id })}
+      `
+    
+    case 'favourite-pokemons':
+      return `
+        ${FavouritePokemons(props)}
       `
 
     default:

@@ -1,95 +1,16 @@
-// import {cn, ref, map, get} from 'delta'
-//
-// import withAsync from '../../hocs/withAsync'
-//
-// import './SmartSearch.css'
-//
-// const ResultSection = ({ name, id }) => `
-//     <div class='result-section'>
-//         <a class='result-link' href='#pokemon/${id}'></a>
-//         <span class='result-name'>${name}</span>
-//     </div>
-//   `
-//
-// const ResultsContent = ({ items, useEffect }) => {
-//   useEffect(() => {
-//     console.log('df')
-//   })
-//
-//   return `
-//   ${map(items, el => ResultSection({ ...el }))}
-// `
-// }
-//
-// const ResultsContentAsync = withAsync(ResultsContent)
-//
-// const SmartSearch = ({ className, useEffect, ...props }) => {
-//   const inputRef = ref()
-//   const resultsRef = ref()
-//
-//   const asyncProps = get('https://pokeapi.co/api/v2/pokemon/?limit=811')
-//
-//   const patch = async ({ results }) => {
-//     return {
-//       items: results.map(({ name, url }) => ({ name, id: url.split('/').slice(-2)[0] }))
-//     }
-//   }
-//
-//   const showResults = () => {
-//     resultsRef().classList.remove('hidden')
-//   }
-//
-//   const hideResults = ({ target: { classList } }) => {
-//     if (classList.contains('search-input') || classList.contains('result-link')) {
-//       return
-//     }
-//     resultsRef().classList.add('hidden')
-//   }
-//
-//   // const search = () => {
-//   //   console.log(inputRef().value)
-//   //   resultsRef().innerHTML = ResultsContent({ ...props, items: [{name: 'hui', id: 25}] })
-//   // }
-//
-//   useEffect(() => {
-//     inputRef().addEventListener('focus', showResults)
-//     // inputRef().addEventListener('input', search)
-//     document.addEventListener('click', hideResults)
-//
-//     return () => {
-//       inputRef().removeEventListener('focus', showResults)
-//       // inputRef().removeEventListener('input', search)
-//       document.removeEventListener('click', hideResults)
-//     }
-//   })
-//
-//   return `
-//     <div class='${cn('search', className)}'>
-//         <input id='${inputRef()}' class='search-input' type='text' placeholder='pokemon name'>
-//         <div id='${resultsRef()}' class='${cn('hidden', 'search-results')}'>
-//             ${ResultsContentAsync({ ...props, asyncProps, patch, useEffect, spinnerType: 'dual-ring' })}
-//         </div>
-//     </div>
-// `
-// }
-//
-// export default SmartSearch
-
-
-
-
 import { cn, ref, get, strToHTML } from 'delta'
 
 import Input from '../Input'
 import SearchList from '../SearchList'
+import withLocalStorage from '../../hocs/withLocalStorage'
 
 import './SmartSearch.css'
 
-const SmartSearch = ({ className, useEffect, ...props }) => {
+const SmartSearch = ({ className, useEffect, ls, ...props }) => {
   const searchPanelRef = ref()
   const inputRef = ref()
   
-  let items = []
+  let items = ls.get('poke-items')
   
   const search = () => {
     const possibleChild = searchPanelRef().children[1]
@@ -104,12 +25,17 @@ const SmartSearch = ({ className, useEffect, ...props }) => {
   
   useEffect(() => {
     inputRef().addEventListener('input', search)
-  
-    get('https://pokeapi.co/api/v2/pokemon/?limit=811')
-      .then(({ results }) => {
-        inputRef().removeAttribute('disabled')
-        items = results.map(({ name, url }) => ({ name, id: url.split('/').slice(-2)[0] }))
-      })
+    
+    if (!items) {
+      get('https://pokeapi.co/api/v2/pokemon/?limit=811')
+        .then(({ results }) => {
+          inputRef().removeAttribute('disabled')
+          items = results.map(({ name, url }) => ({ name, id: url.split('/').slice(-2)[0], favourite: false }))
+          ls.set('poke-items', items)
+        })
+    } else {
+      inputRef().removeAttribute('disabled')
+    }
     
     return () => {
       inputRef().removeEventListener('input', search)
@@ -129,4 +55,4 @@ const SmartSearch = ({ className, useEffect, ...props }) => {
 `
 }
 
-export default SmartSearch
+export default withLocalStorage(SmartSearch)

@@ -4,9 +4,9 @@ import ResumeCard from '../ResumeCard'
 import Arrow from '../Arrow'
 import withAsync from '../../hocs/withAsync'
 import withHeader from '../../hocs/withHeader'
+import withLocalStorage from '../../hocs/withLocalStorage';
 
 import './Pokemon.css'
-import withLocalStorage from "../../hocs/withLocalStorage";
 
 const ResumeCardAsync = withAsync(ResumeCard)
 
@@ -81,6 +81,9 @@ const Pokemon = ({ id, useEffect, ls, ...props }) => {
     return resData
   }
   
+  const pokeItems = ls.get('poke-items')
+  const favourite = pokeItems ? pokeItems[id - 1].favourite : false
+  
   return `
     ${ResumeCardAsync({
       ...props,
@@ -88,6 +91,7 @@ const Pokemon = ({ id, useEffect, ls, ...props }) => {
       asyncProps,
       patch,
       spinnerType: 'pokeball',
+      favourite,
       useEffect
     })}
     ${Arrow({

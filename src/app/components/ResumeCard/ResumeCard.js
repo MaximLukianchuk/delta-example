@@ -1,4 +1,4 @@
-import { cn } from 'delta'
+import { cn, ref } from 'delta'
 
 import Image from '../Image'
 import Card from '../Card'
@@ -14,8 +14,11 @@ const ResumeCard = ({
   name,
   downloadText,
   id,
+  favourite,
+  useEffect,
   ...props
 }) => {
+  
   return `
     <div class='${cn(className, 'resume-card')}'>
         ${img1 ? Image({
@@ -41,7 +44,8 @@ const ResumeCard = ({
         </div>
         ${id ? Star({
           className: 'resume-star',
-          selected: true
+          selected: favourite,
+          pokeId: id
         }) : ''}
     </div>
 `
